@@ -1,0 +1,66 @@
+.featured {
+  background-image: url(https://rukminim2.flixcart.com/image/850/1000/l0igvww0/poster/i/s/a/medium-deadpool-movie-wall-poster-wall-poster-print-on-art-paper-original-imagcaf34cmfaxhx.jpeg?q=90&crop=false);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  .featuredBox {
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(4, 0, 9, 0.307);
+
+    .featuredContainer {
+      position: absolute;
+      top: 15rem;
+      left: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      width: 40%;
+      .fDeatails {
+        .fName {
+          font-size: 6rem;
+          font-weight: 900;
+          color: white;
+        }
+        .fTitle {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: rgb(241, 237, 237);
+          margin: 25px 0 8px 0 ;
+        }
+        .fDesc {
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgb(215, 212, 212);
+          }
+      }
+      .fBtns{
+        margin-top: 25px;
+        display: flex;
+        .fPlay{
+            display: flex;
+            align-items: center;
+            border: none;
+            outline: none;
+            background-color: rgb(197, 197, 197);
+            padding: 10px 15px;
+            border-radius: 7px;
+            margin-right: 10px;
+        }
+        .fInfo{
+            display: flex;
+            align-items: center;
+            border: none;
+            outline: none;
+            background-color: rgb(122, 120, 120);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 7px;
+        }
+      }
+    }
+  }
+}
