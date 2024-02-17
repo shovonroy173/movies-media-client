@@ -1,0 +1,46 @@
+.register{
+        background-image: url(https://miro.medium.com/v2/resize:fit:1400/1*5lyavS59mazOFnb55Z6znQ.png);
+        background-repeat: no-repeat;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .registerContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 10px 40px;
+            background: rgba(0, 0, 0, 0.559);
+            width: 30%;
+            height: 50%;
+            .registerText{
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: white;
+            }
+            .registerInput{
+                outline: none;
+                border: none;
+                height: 40px;
+                font-size: 1.3rem;
+                padding: 0 15px;
+                background: rgb(57, 57, 57);
+                color: white;
+                border-radius: 7px;
+            }
+            .registerBtn{
+                outline: none;
+                border: none;
+                height: 60px;
+                font-size: 1.7rem;
+                padding: 0 15px;
+                background: red;
+                color: white;
+                text-align: center;
+                border-radius: 7px;
+margin: 10px 0;
+            }
+        }
+}

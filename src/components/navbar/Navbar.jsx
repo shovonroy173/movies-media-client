@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Avatar from "@mui/material/Avatar";
 import { useState } from "react";
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 const Navbar = () => {
   const [open , setOpen] = useState(false);
   return (
@@ -18,17 +19,18 @@ const Navbar = () => {
       </div>
       <div className="right">
         
-          <SearchIcon onClick={()=>(setOpen(true))} />
+          <SearchIcon onClick={()=>(setOpen(!open))} />
           {open &&  
           <div className="searchedBar">
           <input type="text" placeholder="movies , shows.." className="inputBar" />
           <div className="searchedMovie">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjI3jcavpiBBT4pxJTu5n5Frxp9FjiclqRjs_vOJbk-tubcaZkBo4fEr2zV47dc5ar3X0&usqp=CAU" className="movImg" />
-            <div className="movDeatils">
+            <div className="movDetails">
               <p className="movName">Rick and Morty</p>
+              <p className="movType">TV Show</p>
               <p className="movRating">8.1</p>
             </div>
-            
+            <DisabledByDefaultIcon />  
           </div>
           </div>
           }

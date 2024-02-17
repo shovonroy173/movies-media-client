@@ -1,0 +1,38 @@
+.email{
+    background-image: url(https://miro.medium.com/v2/resize:fit:1400/1*5lyavS59mazOFnb55Z6znQ.png);
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   .emailInput{
+    outline: none;
+    border: none;
+    width: 40%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.447);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0 20px;
+    margin-right: 10px;
+    border-radius: 10px;
+    ::placeholder{
+        font-size: 1.1rem;
+        color: rgba(208, 206, 206, 0.806);
+    }
+   }
+   .emailBtn{
+    outline: none;
+    border: none;
+    height: 60px;
+    background: red;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 800;
+    border-radius: 15px;
+    padding: 0 10px;
+   }
+}
