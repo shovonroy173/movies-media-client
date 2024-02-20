@@ -1,0 +1,40 @@
+.categoriesPage{
+    padding: 100px 50px ;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.listItem{
+    width: 350px;
+    margin: 30px 0; 
+    z-index: 999;
+    background-color: white;
+    .listImg{
+        width: 350px;
+        height: 200px;
+        object-fit: cover;
+    }
+    .listImg:hover{
+        transform: scale(1.1);
+        transition: all .5s ease-in-out;
+    }
+    
+    .listDetails{
+        background: rgb(50, 49, 49);
+        color: white;
+        padding: 10px 8px;
+        .lIcons{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .listTime{
+            margin: 8px 0;
+        }
+    }
+
+    
+}
+
+
