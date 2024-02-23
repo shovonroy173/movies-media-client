@@ -6,20 +6,45 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useState } from "react";
-const trailer =
-  "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
-const ListItem = () => {
-    const [isHovered, setIsHovered] = useState(false);
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import {useSelector} from "react-redux";
 
+const ListItem = (item) => {
+
+  const user = useSelector((state)=>(state.user));
+    const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
+    const handleClick = async()=>{
+      const res = axios.put(`http://localhost:5000/api/movie/view/${item?.item?._id}`);
+      console.log((await res).data);
+      navigate(`/watch/${item?.item?._id}`);
+    };
+    const handleLike = async()=>{
+      const res = axios.put(`http://localhost:5000/api/movie/like/${item?.item?._id}` , {userId: user?.currentUser._id});
+      console.log("LINE AT 24" , (await res).data);
+
+    }
+    const handleDislike = async()=>{
+      const res = axios.put(`http://localhost:5000/api/movie/dislike/${item?.item?._id}` , {userId: user?.currentUser._id});
+      console.log("LINE AT 24" , (await res).data);
+
+    }
+    const handleWishlist = async()=>{
+      const res = axios.put(`http://localhost:5000/api/movie/addwishlist/${item?.item?._id}` , {userId: user?.currentUser._id});
+      console.log("LINE AT 24" , (await res).data);
+
+    }
   return (
     <div
         className="listItem"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        
       >
         {!isHovered && (
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjI3jcavpiBBT4pxJTu5n5Frxp9FjiclqRjs_vOJbk-tubcaZkBo4fEr2zV47dc5ar3X0&usqp=CAU"
+            src={item?.item?.imgUrl}
             alt=""
             className="listImg"
           />
@@ -27,18 +52,17 @@ const ListItem = () => {
 
         {isHovered && (
           <>
-            <video src={trailer} autoPlay={true} className="listImg" />
+            <video src={item?.item?.videoUrl} autoPlay={true} className="listImg" onClick={handleClick} />
             <div className="listDetails">
               <div className="lIcons">
-                <PlayCircle />
-                <AddCircleIcon />
-                <ThumbUpIcon />
-                <ThumbDownIcon />
+                <PlayCircle onClick={handleClick} />
+                <AddCircleIcon onClick={handleWishlist} />
+                <ThumbUpIcon onClick={handleLike} />
+                <ThumbDownIcon onClick={handleDislike} />
               </div>
               <p className="lTime">1 hours 14 mins</p>
               <div className="lDesc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-                aliquam, recusandae ut veniam est ex a repellendus
+                {item?.item?.desc}
               </div>
             </div>
           </>

@@ -1,11 +1,12 @@
-import "./list.scss";
+import "./bylikes.scss";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ListItem from "../listItem/ListItem";
 import { useEffect, useState } from "react";
 import axios from "axios";
-const List = (item) => {
-  // console.log("LINE AT 8 IN LIST" ,  item);
+import { useSelector } from "react-redux";
+const ByLikes = () => {
+  const user = useSelector((state)=>(state.user));
   
   const responsive = {
     superLargeDesktop: {
@@ -33,29 +34,18 @@ const List = (item) => {
 
   useEffect(()=>{
     const getMovies = async()=>{
-      if(item.category === "new"){
-        const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbycreation`);
-      // setMovie([...Object.values(item)]?.[0]);
-      setMovies(res.data)
-      }
-      else if(item.category === "mylist"){
-        const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbywishlist/${item.userId}`);
-      // setMovie([...Object.values(item)]?.[0]);
-      setMovies(res.data)
-      }else{
-      const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbycategory/${item.category}`);
+      const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbylikes/${user?.currentUser._id}`);
       // setMovie([...Object.values(item)]?.[0]);
       setMovies(res.data);
-      }
     }
     getMovies();
     
-  } , [item]);
+  } , [user?.currentUser._id]);
   // console.log("LINE AT 40" , movie.length);
   // console.log("LINE AT 41" , movies);
 
   return (
-    <div className="list" id={item.id}>
+    <div className="list">
       <Carousel responsive={responsive} 
       autoPlay={true}
       infinite={true}
@@ -73,4 +63,4 @@ const List = (item) => {
   );
 };
 
-export default List;
+export default ByLikes;

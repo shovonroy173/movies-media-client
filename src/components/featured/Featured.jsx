@@ -1,36 +1,66 @@
 import "./featured.scss";
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import InfoIcon from '@mui/icons-material/Info';
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import InfoIcon from "@mui/icons-material/Info";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Featured = () => {
-  return (
-    <div className="featured">
-        <div className="featuredBox">
-        <div className="featuredContainer">
-            <div className="fDeatails">
-                <p className="fName">
-                    DeadPool
-                </p>
-                <p className="fTitle">
-                American superhero film
-                </p>
-                <p className="fDesc">
-                Ajax, a twisted scientist, experiments on Wade Wilson, a mercenary, to cure him of cancer and give him healing powers. However, the experiment leaves Wade disfigured and he decides to exact revenge.
-                </p>
-            </div>
-            <div className="fBtns">
-                <button className="fPlay">
-                    <PlayArrowIcon/>
-                    Play
-                    </button>
-                <button className="fInfo">
-                    <InfoIcon/>
-                    Info
-                    </button>
-            </div>
-        </div>
-        </div>
-    </div>
-  )
-}
+  const navigate = useNavigate();
+  const [mov, setMov] = useState([]);
+  const [open, setOpen] = useState(false);
 
-export default Featured
+  useEffect(() => {
+    const getMov = async () => {
+      const res = await axios.get("http://localhost:5000/api/movie/getmovies");
+      console.log(res.data);
+      setMov(res.data);
+    };
+    getMov();
+  }, []);
+  console.log(mov);
+  return (
+    <>
+      {mov.length !== 0 ? (
+        <div className="featured">
+          <img src={mov[0]?.imgUrl} alt="" className="featuredImg" />
+          <div className="featuredBox">
+            <div className="featuredContainer">
+              <div className="fDeatails">
+                <p className="fName">{mov[0]?.name}</p>
+
+                <p className="fDesc">{mov[0]?.desc}</p>
+              </div>
+              <div className="fBtns">
+                <button
+                  className="fPlay"
+                  onClick={() => navigate(`/watch/${mov[0]?._id}`)}
+                >
+                  <PlayArrowIcon />
+                  Play
+                </button>
+                <button className="fInfo" onClick={() => setOpen(!open)}>
+                  <InfoIcon />
+                  Info
+                  
+                </button>
+                
+                
+              </div>
+              {open && (
+                  <div className="movInfo">
+                    <p>{mov[0]?.rating}</p>
+                    <p>{mov[0]?.genre}</p>
+                    <p>{mov[0]?.category}</p>
+                    </div>
+                )}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="featuredLoading">Loading..</div>
+      )}
+    </>
+  );
+};
+
+export default Featured;

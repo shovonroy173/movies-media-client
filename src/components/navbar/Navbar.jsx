@@ -2,46 +2,106 @@ import "./navbar.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Avatar from "@mui/material/Avatar";
-import { useState } from "react";
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
-const Navbar = () => {
-  const [open , setOpen] = useState(false);
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../redux/authRedux";
+import { useEffect, useState } from "react";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+const Navbar = (cat) => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(logOut());
+  };
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [option, setOption] = useState(false);
+  const navigate = useNavigate();
+  const handleOption = async (e) => {
+    setOption(e.target.value);
+    console.log(option);
+    navigate(`/categories/${e.target.value}`, {
+      state: { option: e.target.value },
+    });
+  };
+  const [text, setText] = useState(null);
+  const [sMovie, setSMovie] = useState([]);
+
+  useEffect(() => {
+    const handleChange = async () => {
+      const res = await axios.get(
+        `http://localhost:5000/api/movie/getmovies/search?q=${text}`
+      );
+      setSMovie(res.data);
+    };
+    handleChange();
+  }, [text]);
+
   return (
     <div className="navbar">
       <div className="navContainer">
-      <div className="left">
-        <p>movies-media</p>
-        <p>Home</p>
-        <p>Series</p>
-        <p>Movies</p>
-        <p>New and Popular</p>
-        <p>My List</p>
-      </div>
-      <div className="right">
-        
-          <SearchIcon onClick={()=>(setOpen(!open))} />
-          {open &&  
-          <div className="searchedBar">
-          <input type="text" placeholder="movies , shows.." className="inputBar" />
-          <div className="searchedMovie">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjI3jcavpiBBT4pxJTu5n5Frxp9FjiclqRjs_vOJbk-tubcaZkBo4fEr2zV47dc5ar3X0&usqp=CAU" className="movImg" />
-            <div className="movDetails">
-              <p className="movName">Rick and Morty</p>
-              <p className="movType">TV Show</p>
-              <p className="movRating">8.1</p>
+        <div className="left">
+          <a href="/">
+            <img
+              src="https://cdn2.vectorstock.com/i/1000x1000/26/81/red-grunge-cinema-logo-vector-4492681.jpg"
+              alt=""
+              className="logo"
+            />
+          </a>
+
+          {cat.genre === "false" && (
+            <>
+              <a href="#series">Series</a>
+              <a href="#movies">Movies</a>
+              <a href="#new">New</a>
+              <a href="#mylist">Mylist</a>
+            </>
+          )}
+
+          <ArrowDropDownIcon onClick={() => setOpen2(!open2)} />
+          {open2 && (
+            <select id="dropdown" onChange={handleOption}>
+              <option>Genre</option>
+              <option value={"horror"}>horror</option>
+              <option value={"thriller"}>thriller</option>
+              <option value={"comedy"}>comedy</option>
+              <option value={"action"}>action</option>
+            </select>
+          )}
+        </div>
+        <div className="right">
+          <SearchIcon onClick={() => setOpen(!open)} />
+          {open && (
+            <div className="searchedBar">
+              <input
+                type="text"
+                placeholder="movies , shows.."
+                className="inputBar"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
+              {sMovie.map((item, index) => (
+                <div className="searchedMovie" key={index}>
+                  <img
+                    src={item.imgUrl}
+                    className="movImg"
+                    onClick={() => navigate(`/watch/${item?._id}`)}
+                  />
+                  <div className="movDetails">
+                    <p className="movName">{item.name}</p>
+                    <p className="movType">{item.category}</p>
+                    <p className="movRating">{item.rating}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <DisabledByDefaultIcon />  
-          </div>
-          </div>
-          }
-          
-        
-        <p>Men</p>
-        <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1z" alt="" className='profileImg' />
-        <Avatar>S</Avatar>
-        <LogoutIcon />
-        
-      </div>
+          )}
+
+          <img src={user?.currentUser?.img} alt="" className="profileImg" />
+          <Avatar>{user.currentUser.name[0].toUpperCase()}</Avatar>
+          <LogoutIcon onClick={handleClick} className="logOutBtn" />
+        </div>
       </div>
     </div>
   );

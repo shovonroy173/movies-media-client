@@ -16,11 +16,18 @@
     justify-content: space-around;
     .payBox {
       width: 250px;
-      border: 1px solid black;
       padding: 10px;
       border-radius: 15px;
       cursor: pointer;
       background: white;
+      box-shadow: 0px 0px 9px 0px rgba(255,255,255,1);
+      .popular{
+        background: blue;
+        text-align: center;
+        font-weight: 600;
+        border-radius: 15px;
+        color: white;
+      }
       .payHeader {
         height: 70px;
         background: purple;
@@ -46,7 +53,7 @@
         }
         .payPriceValue {
           color: rgb(82, 82, 82);
-          font-size: 1.3rem;
+          font-size: 1rem;
           font-weight: 700;
           margin: 5px 0;
         }
@@ -65,5 +72,10 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin-top: 30px;
+  }
+  .payBtn:disabled{
+    background: gray;
+    color: rgb(178, 176, 176);
+    cursor: not-allowed;
   }
 }
