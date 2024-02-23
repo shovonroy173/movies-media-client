@@ -11,7 +11,7 @@ const Featured = () => {
 
   useEffect(() => {
     const getMov = async () => {
-      const res = await axios.get("http://localhost:5000/api/movie/getmovies");
+      const res = await axios.get("https://movies-media-api.onrender.com/api/movie/getmovies");
       console.log(res.data);
       setMov(res.data);
     };

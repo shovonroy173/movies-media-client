@@ -14,7 +14,7 @@ const Email = () => {
   const navigate = useNavigate();
   useEffect(()=>{
     const getUser = async()=>{
-      const res = await axios.get(`http://localhost:5000/api/user/getuser/${email}`);
+      const res = await axios.get(`https://movies-media-api.onrender.com/api/user/getuser/${email}`);
       // console.log(res);
       setUser(res.data);
     }

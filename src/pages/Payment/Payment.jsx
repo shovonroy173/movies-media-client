@@ -18,7 +18,7 @@ const Payment = () => {
   console.log(name , price);
   const handleClick = async()=>{
     const stripe = await loadStripe(KEY);
-    const res = await axios.post("http://localhost:5000/api/payment/checkout" , {
+    const res = await axios.post("https://movies-media-api.onrender.com/api/payment/checkout" , {
       name , price , userEmail
     });
     const result = stripe.redirectToCheckout({

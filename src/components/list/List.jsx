@@ -34,16 +34,16 @@ const List = (item) => {
   useEffect(()=>{
     const getMovies = async()=>{
       if(item.category === "new"){
-        const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbycreation`);
+        const res = await axios.get(`https://movies-media-api.onrender.com/api/movie/getmovies/getbycreation`);
       // setMovie([...Object.values(item)]?.[0]);
       setMovies(res.data)
       }
       else if(item.category === "mylist"){
-        const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbywishlist/${item.userId}`);
+        const res = await axios.get(`https://movies-media-api.onrender.com/api/movie/getmovies/getbywishlist/${item.userId}`);
       // setMovie([...Object.values(item)]?.[0]);
       setMovies(res.data)
       }else{
-      const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbycategory/${item.category}`);
+      const res = await axios.get(`https://movies-media-api.onrender.com/api/movie/getmovies/getbycategory/${item.category}`);
       // setMovie([...Object.values(item)]?.[0]);
       setMovies(res.data);
       }

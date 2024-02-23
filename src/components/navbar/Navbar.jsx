@@ -31,7 +31,7 @@ const Navbar = (cat) => {
   useEffect(() => {
     const handleChange = async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/movie/getmovies/search?q=${text}`
+        `https://movies-media-api.onrender.com/api/movie/getmovies/search?q=${text}`
       );
       setSMovie(res.data);
     };

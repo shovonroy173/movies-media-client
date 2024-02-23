@@ -10,7 +10,7 @@ const Watch = () => {
     const id = location.pathname.split("/")[2];
     useEffect(()=>{
         const getMovie = async()=>{
-            const res = await axios.get(`http://localhost:5000/api/movie/getmovie/${id}`);
+            const res = await axios.get(`https://movies-media-api.onrender.com/api/movie/getmovie/${id}`);
             setMovie(res.data[0]?.videoUrl);
             // console.log(res.data);
         }

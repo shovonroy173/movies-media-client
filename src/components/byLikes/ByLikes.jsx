@@ -34,7 +34,7 @@ const ByLikes = () => {
 
   useEffect(()=>{
     const getMovies = async()=>{
-      const res = await axios.get(`http://localhost:5000/api/movie/getmovies/getbylikes/${user?.currentUser._id}`);
+      const res = await axios.get(`https://movies-media-api.onrender.com/api/movie/getmovies/getbylikes/${user?.currentUser._id}`);
       // setMovie([...Object.values(item)]?.[0]);
       setMovies(res.data);
     }

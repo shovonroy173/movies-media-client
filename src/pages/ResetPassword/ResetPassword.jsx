@@ -19,7 +19,7 @@ const navigate = useNavigate();
 //   const location = useLocation();
   const handleClick = async()=>{
     console.log("clicked!");
-    await axios.put(`http://localhost:5000/api/auth/resetpassword/${id}/${token}` , {password});
+    await axios.put(`https://movies-media-api.onrender.com/api/auth/resetpassword/${id}/${token}` , {password});
     // console.log(res);
     navigate("/")
   }

@@ -9,12 +9,12 @@ const Login = () => {
   const [password , setPassword] = useState(null);
   const dispatch = useDispatch();
   const handleClick = ()=>{
-    login(dispatch , {email , password} , "data"); 
+    login(dispatch , {email , password}); 
   };
   const location = useLocation();
   const handlePassword = async()=>{
     console.log("clicked!");
-    const res = await axios.post("http://localhost:5000/api/auth/sendlink" , {email});
+    const res = await axios.post("https://movies-media-api.onrender.com/api/auth/sendlink" , {email});
     console.log(res.data);
   }
   console.log(email);

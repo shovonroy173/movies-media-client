@@ -34,7 +34,7 @@ const ByRating = () => {
 
   useEffect(()=>{
     const getMovies = async()=>{
-      const res = await axios.get("http://localhost:5000/api/movie/getmovies/getbyrating");
+      const res = await axios.get("https://movies-media-api.onrender.com/api/movie/getmovies/getbyrating");
       // setMovie([...Object.values(item)]?.[0]);
       setMovies(res.data);
     }

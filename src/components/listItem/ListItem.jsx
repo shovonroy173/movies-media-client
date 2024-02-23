@@ -16,22 +16,22 @@ const ListItem = (item) => {
     const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
     const handleClick = async()=>{
-      const res = axios.put(`http://localhost:5000/api/movie/view/${item?.item?._id}`);
+      const res = axios.put(`https://movies-media-api.onrender.com/api/movie/view/${item?.item?._id}`);
       console.log((await res).data);
       navigate(`/watch/${item?.item?._id}`);
     };
     const handleLike = async()=>{
-      const res = axios.put(`http://localhost:5000/api/movie/like/${item?.item?._id}` , {userId: user?.currentUser._id});
+      const res = axios.put(`https://movies-media-api.onrender.com/api/movie/like/${item?.item?._id}` , {userId: user?.currentUser._id});
       console.log("LINE AT 24" , (await res).data);
 
     }
     const handleDislike = async()=>{
-      const res = axios.put(`http://localhost:5000/api/movie/dislike/${item?.item?._id}` , {userId: user?.currentUser._id});
+      const res = axios.put(`https://movies-media-api.onrender.com/api/movie/dislike/${item?.item?._id}` , {userId: user?.currentUser._id});
       console.log("LINE AT 24" , (await res).data);
 
     }
     const handleWishlist = async()=>{
-      const res = axios.put(`http://localhost:5000/api/movie/addwishlist/${item?.item?._id}` , {userId: user?.currentUser._id});
+      const res = axios.put(`https://movies-media-api.onrender.com/api/movie/addwishlist/${item?.item?._id}` , {userId: user?.currentUser._id});
       console.log("LINE AT 24" , (await res).data);
 
     }

@@ -20,24 +20,24 @@ const CategoriesPage = () => {
   const [genreMov, setGenreMov] = useState([]);
   const navigate = useNavigate();
   const handleClick = async (item) => {
-    axios.put(`http://localhost:5000/api/movie/view/${item}`);
+    axios.put(`https://movies-media-api.onrender.com/api/movie/view/${item}`);
     // console.log((await res).data);
     navigate(`/watch/${item?._id}`);
   };
   const handleLike = async (item) => {
-    axios.put(`http://localhost:5000/api/movie/like/${item}`, {
+    axios.put(`https://movies-media-api.onrender.com/api/movie/like/${item}`, {
       userId: user?.currentUser._id,
     });
     // console.log("LINE AT 24", (await res).data);
   };
   const handleDislike = async (item) => {
-    axios.put(`http://localhost:5000/api/movie/dislike/${item}`, {
+    axios.put(`https://movies-media-api.onrender.com/api/movie/dislike/${item}`, {
       userId: user?.currentUser._id,
     });
     // console.log("LINE AT 24", (await res).data);
   };
   const handleWishlist = async (item) => {
-    axios.put(`http://localhost:5000/api/movie/wishlist/${item}`, {
+    axios.put(`https://movies-media-api.onrender.com/api/movie/wishlist/${item}`, {
       userId: user?.currentUser._id,
     });
     // console.log("LINE AT 24", (await res).data);
@@ -45,7 +45,7 @@ const CategoriesPage = () => {
   useEffect(() => {
     const getByGenre = async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/movie/getmovies/getbygenre/${type}`
+        `https://movies-media-api.onrender.com/api/movie/getmovies/getbygenre/${type}`
       );
       setGenreMov(res.data);
     };
