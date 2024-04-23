@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const ByRating = () => {
-//   console.log("LINE AT 8 IN LIST" ,  (item));
+
   
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
+
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -29,20 +29,19 @@ const ByRating = () => {
   };
 
   const [movies , setMovies] = useState([]);
-  // const [movie , setMovie] = useState([]);
+
   
 
   useEffect(()=>{
     const getMovies = async()=>{
       const res = await axios.get("https://movies-media-api.onrender.com/api/movie/getmovies/getbyrating");
-      // setMovie([...Object.values(item)]?.[0]);
+
       setMovies(res.data);
     }
     getMovies();
     
   } , []);
-  // console.log("LINE AT 40" , movie.length);
-  // console.log("LINE AT 41" , movies);
+
 
   return (
     <div className="list" >
@@ -53,9 +52,9 @@ const ByRating = () => {
       showDots={true}
       partialVisible={true} 
       >
-        {movies?.map((item , index)=>(
-          <ListItem item={item} key={index}/>
-          // <div key={index}>index</div>
+        {movies?.map((item)=>(
+          <ListItem item={item} key={item._id}/>
+
           
         ))}
         

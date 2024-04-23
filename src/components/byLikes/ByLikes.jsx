@@ -1,4 +1,4 @@
-import "./bylikes.scss";
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ListItem from "../listItem/ListItem";
@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 const ByLikes = () => {
-  const user = useSelector((state)=>(state.user));
-  
+  const user = useSelector((state) => state.user);
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -28,36 +28,30 @@ const ByLikes = () => {
     },
   };
 
-  const [movies , setMovies] = useState([]);
-  // const [movie , setMovie] = useState([]);
-  
+  const [movies, setMovies] = useState([]);
 
-  useEffect(()=>{
-    const getMovies = async()=>{
-      const res = await axios.get(`https://movies-media-api.onrender.com/api/movie/getmovies/getbylikes/${user?.currentUser._id}`);
-      // setMovie([...Object.values(item)]?.[0]);
+  useEffect(() => {
+    const getMovies = async () => {
+      const res = await axios.get(
+        `https://movies-media-api.onrender.com/api/movie/getmovies/getbylikes/${user?.currentUser._id}`
+      );
       setMovies(res.data);
-    }
+    };
     getMovies();
-    
-  } , [user?.currentUser._id]);
-  // console.log("LINE AT 40" , movie.length);
-  // console.log("LINE AT 41" , movies);
+  }, [user?.currentUser._id]);
 
   return (
     <div className="list">
-      <Carousel responsive={responsive} 
-      autoPlay={true}
-      infinite={true}
-      showDots={true}
-      partialVisible={true} 
+      <Carousel
+        responsive={responsive}
+        autoPlay={true}
+        infinite={true}
+        showDots={true}
+        partialVisible={true}
       >
-        {movies?.map((item , index)=>(
-          <ListItem item={item} key={index}/>
-          // <div key={index}>index</div>
-          
+        {movies?.map((item) => (
+          <ListItem item={item} key={item._id} />
         ))}
-        
       </Carousel>
     </div>
   );
