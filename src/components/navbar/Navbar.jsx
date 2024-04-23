@@ -44,7 +44,7 @@ const Navbar = (cat) => {
         <div className="left">
           <a href="/">
             <img
-              src="https://cdn2.vectorstock.com/i/1000x1000/26/81/red-grunge-cinema-logo-vector-4492681.jpg"
+              src="/logo.png"
               alt=""
               className="logo"
             />
