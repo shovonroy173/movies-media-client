@@ -25,11 +25,11 @@ const Login = () => {
 
         <input type="text" placeholder="Email" className="registerInput" onChange={(e)=>(setEmail(e.target.value))} />
         {/* <p className="inputErrText">*email required!!</p> */}
-        <input type="text" placeholder="Password" className="registerInput" onChange={(e)=>(setPassword(e.target.value))} />
+        <input type="password" placeholder="Password" className="registerInput" onChange={(e)=>(setPassword(e.target.value))} />
         {/* <p className="inputErrText">*password required!!</p> */}
  
         <button className="registerBtn" onClick={handleClick} disabled={location.state.email !== email} >Sign In</button>
-        <p className="forgotPass" onClick={handlePassword}>*Forgot Password?</p>
+        {/* <p className="forgotPass" onClick={handlePassword}>*Forgot Password?</p> */}
       </div>
     </div>
   );

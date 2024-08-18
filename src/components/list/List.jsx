@@ -59,7 +59,7 @@ const List = (item) => {
       <Carousel responsive={responsive} 
       autoPlay={true}
       infinite={true}
-      showDots={true}
+      draggable={true}
       partialVisible={true} 
       >
         {movies?.map((item , index)=>(
