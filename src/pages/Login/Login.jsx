@@ -29,7 +29,7 @@ const Login = () => {
         {/* <p className="inputErrText">*password required!!</p> */}
  
         <button className="registerBtn" onClick={handleClick} disabled={location.state.email !== email} >Sign In</button>
-        {/* <p className="forgotPass" onClick={handlePassword}>*Forgot Password?</p> */}
+        <p className="forgotPass" onClick={handlePassword}>*Forgot Password?</p>
       </div>
     </div>
   );
