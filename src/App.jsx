@@ -26,10 +26,10 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/watch/:id" element={<Watch />} />
         <Route path="/categories/:type" element={<CategoriesPage />} />
-        {/* <Route
+        <Route
           path="/api/auth/resetPassword/:id/:token"
           element={<ResetPassword />}
-        /> */}
+        />
       </Routes>
     </Router>
   );
